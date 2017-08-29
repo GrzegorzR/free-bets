@@ -1,0 +1,4 @@
+applications:
+- name: frreeebestcl-handy-glazier
+  memory: 64M
+  buildpack: staticfile_buildpack

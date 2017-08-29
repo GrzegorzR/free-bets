@@ -1,0 +1,41 @@
+<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+  <div class="container">
+    <a class="navbar-brand">History</a>
+    <ul class="nav navbar-nav" routerLinkActive="active">
+      <li class="nav-item"><a class="nav-link" routerLink="../active">Active bet definitions</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="../historical">Historical bets</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="../my-bets">My bets</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="../my-bet-def">My active bets definition</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="../add-bet-def">Add bet definition</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="" (click)="logout()">Logout</a></li>
+    </ul>
+    <div *ngIf="user">
+      Login:{{user.login}}<br>
+      Money:{{user.money}}
+    </div>
+  </div>
+</nav>
+
+<br>
+<br>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Bet description</th>
+    <th>Option 1</th>
+    <th>Option 2</th>
+    <th>Bet owner</th>
+    <th>Win option</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of arr;  let i = index" >
+    <td>{{row.description}}</td>
+    <td>{{row.optionOne}}</td>
+    <td>{{row.optionTwo}}</td>
+    <td>{{row.owner.login}}</td>
+    <td>{{row.winOption}}</td>
+  </tr>
+  </tbody>
+</table>
+

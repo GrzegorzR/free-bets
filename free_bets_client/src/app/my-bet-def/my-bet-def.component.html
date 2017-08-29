@@ -1,0 +1,49 @@
+<nav class="navbar navbar-fixed-top navbar-dark bg-inverse">
+  <div class="container">
+    <a class="navbar-brand">MY BETS DEFINITIONS</a>
+    <ul class="nav navbar-nav" routerLinkActive="active">
+      <li class="nav-item"><a class="nav-link" routerLink="../active">Active bet definitions</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="../historical">Historical bets</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="../my-bets">My bets</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="../my-bet-def">My bets definition</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="../add-bet-def">Add bet definition</a></li>
+      <li class="nav-item"><a class="nav-link" routerLink="" (click)="logout()">Logout</a></li>
+    </ul>
+
+    <div *ngIf="user">
+      Login:{{user.login}}<br>
+      Money:{{user.money}}
+    </div>
+  </div>
+</nav>
+
+<br>
+<br>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Bet description</th>
+    <th>Option 1</th>
+    <th>Option 2</th>
+    <th>Bet owner</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let row of arr;  let i = index" (click)="setClickedRow(row)" [class.active]="i == selectedRow">
+    <td>{{row.description}}</td>
+    <td>{{row.optionOne}}</td>
+    <td>{{row.optionTwo}}</td>
+    <td>{{row.owner.login}}</td>
+  </tr>
+  </tbody>
+</table>
+
+<div  *ngIf="selected" class="well well-lg">
+  <strong>{{selectedDef.description}}</strong><br><br>
+  Resolve bet:<br>
+  <form action="">
+    <input type="radio" [(ngModel)]="model.option"  name="option" value="1"> {{selectedDef.optionOne}}<br>
+    <input type="radio" [(ngModel)]="model.option"  name="option" value="2"> {{selectedDef.optionTwo}}
+  </form>
+  <button (click)="resolveBet()"   class="btn btn-primary">Resolve</button>
+</div>
